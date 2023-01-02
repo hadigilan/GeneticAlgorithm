@@ -24,6 +24,7 @@ curve(f1, from=left , to=right )
 
 example1 <- ga(type = "real-valued", fitness = f1, lower = left , upper = right, maxiter = 100 )				# this find the maximum value of f1
 summary(example1 )
+plot(example1)
 
 
 
@@ -35,10 +36,9 @@ f2 <- function(x) -f1(x)
 left <- -1
 right <- 5
 
-example2 <- ga(type = "real-valued", fitness = f2, lower = left , upper = right, maxiter = 100 )				# this find the minimum value of f2
+example2 <- ga(type = "real-valued", fitness = f2, lower = left , upper = right, maxiter = 100 )				# this find the minimum value of f1
 summary(example2)
 example2@solution																		# to extract final solution
-plot(example2)
 
 
 
@@ -58,7 +58,7 @@ example3 <- ga(type = "real-valued", fitness = f3, lower = left , upper = right,
 example3@solution																		# to extract final solution
 
 curve(f3, from=left , to=right )
-text(x=example3@solution, y=example3@fitnessValue, labels="", pch="*")
+points(x=example3@solution, y=example3@fitnessValue, pch=16, col="red")
 
 
 ############################################################	two dimensional problem 	##########################
@@ -84,11 +84,6 @@ right <- c(10, 10)
 
 example4 <- ga(type = "real-valued", fitness = f4, x=data4$x, y=data4$y, lower = left , upper = right, maxiter = 100, names=c('beta1', 'beta2') )	
 
-summary(example4)
-
-lm(y ~ x, data=data4)																						# compare with the results of formal OLS 
-
-
-############################################################	constrained optimization 	##########################
-
+example4@solution
+lm(y ~ x, data=data4)																		# compare with the results of formal OLS 
 
